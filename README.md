@@ -41,5 +41,5 @@ La idea general de este proyecto era aprender CQRS y DDD, tanto de manera teóri
 5. Abre tu base de datos MySQL (WorkBench).
 6. Abre tu base de datos MongoExpress en [http://localhost:8081/](http://localhost:8081/) (Cuenta: admin, Pass: pass).
 7. Puedes ver los endpoints en Swagger [http://localhost:8084/swagger-ui/index.html#/](http://localhost:8084/swagger-ui/index.html#/).
-8. Prometheus y Grafana disponibles en [localhost:9090](localhost:9090) y [localhost:3000](localhost:3000).
+8. Prometheus y Grafana disponibles en [http://localhost:9090](localhost:9090) y [http://localhost:3000](localhost:3000).
 
