@@ -16,7 +16,9 @@ La idea general de este proyecto era aprender CQRS y DDD, tanto de manera teóri
    - Enfoque de desarrollo con las mejores prácticas para proporcionar datos de manera rápida y optimizada.
    - Kafka para la recepción de eventos y actualización de datos.
 
-![Diagrama de Arquitectura CQRS](https://github.com/NahuelRocha/DDD-CQRS/blob/main/DIAGRAMA-CQRS.png)
+## Diagrama de Arquitectura CQRS del proyecto
+
+(https://github.com/NahuelRocha/DDD-CQRS/blob/main/DIAGRAMA-CQRS.png)
 
 ## Table of Contents
 
