@@ -18,7 +18,7 @@ La idea general de este proyecto era aprender CQRS y DDD, tanto de manera teóri
 
 ## Diagrama de Arquitectura CQRS del proyecto
 
-(https://github.com/NahuelRocha/DDD-CQRS/blob/main/DIAGRAMA-CQRS.png)
+![DIAGRAMA CQRS](https://github.com/NahuelRocha/DDD-CQRS/blob/main/DIAGRAMA-CQRS.png)
 
 ## Table of Contents
 
