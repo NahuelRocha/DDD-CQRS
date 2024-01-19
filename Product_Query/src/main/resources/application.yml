@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      username: nahuel
+      password: rocha
+      host: localhost
+      port: 28017
+      database: product
+      authentication-database: admin
+
+
+server:
+  port: 8082

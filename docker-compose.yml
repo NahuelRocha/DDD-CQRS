@@ -1,0 +1,91 @@
+version: "3"
+
+services:
+
+### MySql database Product_Command
+  db-registerauth:
+    container_name: product-command
+    image: mysql:8.0.33
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: product_command
+      MYSQL_USER: nroch
+      MYSQL_PASSWORD: Test123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3309:3306"
+    expose:
+      - 3309
+
+
+#KAFKA AND ZOOKEEPER CONFIG
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TRICK_TIME: 2000
+    ports:
+      - "22181:2181"
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: broker
+    ports:
+        - "9092:9092"
+    depends_on:
+        - zookeeper
+    environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+#PROMETHEUS and GRAFANA CONFIG
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+
+
+
+# MongoDB database Product_Query
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "28017:27017"
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=nahuel
+      - MONGO_INITDB_ROOT_PASSWORD=rocha
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=nahuel
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rocha
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+  mongo: {}

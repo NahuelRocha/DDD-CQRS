@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+
+#DATABASE CONFIG
+spring:
+  application:
+    name: product-command
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+      format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3309/product_command
+    username: nroch
+    password: Test123
+
+
+##ACTUATOR,PROMETHEUS METRICS
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+  endpoint:
+    health:
+      show-details: always
